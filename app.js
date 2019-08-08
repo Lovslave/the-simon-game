@@ -12,6 +12,18 @@ $(document).keydown(function(){
     }
 });
 
+$(".start-button").click(function(){
+    if(!started){
+        $("#title").text("level "+level);
+        nextSequence();
+        started = true;
+    }
+    $(".start-button").addClass("pressed");
+    setTimeout(() => {
+        $(".start-button").removeClass("pressed");
+    }, 95);
+});
+
 function nextSequence() {
     userPattern = [];
     level++;
@@ -48,7 +60,8 @@ function checkAnswer(currentLevel){
         setTimeout(() => {
             $("body").removeClass("game-over");
         }, 200);
-        $("#title").text("game over, press any key to restart.");
+        $("#title").text("game over..");
+        $(".start-button").text("Restart");
         startOver();
     }
 }
